@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane prefHeight="650.0" prefWidth="900.0"
+            xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="il.cshaifasweng.hsts.client.screens.ExamManagementScreen">
+    <padding>
+        <Insets top="15.0" right="15.0" bottom="15.0" left="15.0"/>
+    </padding>
+
+    <top>
+        <HBox alignment="CENTER_LEFT" spacing="12.0">
+            <Button text="Back" onAction="#handleBack"/>
+            <Label text="Exam Management"
+                   style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+            <Button text="Refresh" onAction="#handleRefresh"/>
+        </HBox>
+    </top>
+
+    <center>
+        <VBox spacing="12.0" BorderPane.alignment="CENTER">
+            <padding>
+                <Insets top="15.0"/>
+            </padding>
+
+            <Label text="Schedule an Approved Exam"
+                   style="-fx-font-weight: bold;"/>
+            <GridPane hgap="10.0" vgap="10.0">
+                <Label text="Approved Exam:"/>
+                <ComboBox fx:id="approvedExamComboBox" prefWidth="300.0"
+                          promptText="Select an approved exam"
+                          GridPane.columnIndex="1"/>
+
+                <Label text="Opening:" GridPane.rowIndex="1"/>
+                <HBox spacing="8.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                    <DatePicker fx:id="openingDatePicker"/>
+                    <TextField fx:id="openingTimeField" prefWidth="90.0"
+                               promptText="HH:mm"/>
+                </HBox>
+
+                <Label text="Closing:" GridPane.rowIndex="2"/>
+                <HBox spacing="8.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                    <DatePicker fx:id="closingDatePicker"/>
+                    <TextField fx:id="closingTimeField" prefWidth="90.0"
+                               promptText="HH:mm"/>
+                </HBox>
+
+                <Label text="Execution Code:" GridPane.rowIndex="3"/>
+                <TextField fx:id="executionCodeField" maxWidth="140.0"
+                           promptText="4 letters/digits"
+                           GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+
+                <Button fx:id="scheduleButton" text="Schedule Exam"
+                        onAction="#handleScheduleExam"
+                        GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+            </GridPane>
+
+            <Separator/>
+            <Label text="My Scheduled Exam Instances"
+                   style="-fx-font-weight: bold;"/>
+            <TableView fx:id="examInstancesTable" VBox.vgrow="ALWAYS">
+                <columns>
+                    <TableColumn fx:id="instanceIdColumn" prefWidth="75.0"
+                                 text="Instance"/>
+                    <TableColumn fx:id="examIdColumn" prefWidth="85.0"
+                                 text="Exam ID"/>
+                    <TableColumn fx:id="courseColumn" prefWidth="150.0"
+                                 text="Course"/>
+                    <TableColumn fx:id="openingColumn" prefWidth="145.0"
+                                 text="Opening"/>
+                    <TableColumn fx:id="closingColumn" prefWidth="145.0"
+                                 text="Closing"/>
+                    <TableColumn fx:id="executionCodeColumn" prefWidth="75.0"
+                                 text="Code"/>
+                    <TableColumn fx:id="effectiveDurationColumn" prefWidth="105.0"
+                                 text="Duration"/>
+                </columns>
+            </TableView>
+
+            <HBox alignment="CENTER_LEFT" spacing="10.0">
+                <TextField fx:id="additionalMinutesField" prefWidth="150.0"
+                           promptText="Additional minutes"/>
+                <Button fx:id="extendDurationButton" text="Extend Duration"
+                        onAction="#handleExtendDuration"/>
+                <Label fx:id="statusLabel" wrapText="true"/>
+            </HBox>
+        </VBox>
+    </center>
+</BorderPane>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane prefHeight="720.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="il.cshaifasweng.hsts.client.screens.TeacherStatisticsScreen">
+    <padding><Insets top="15.0" right="15.0" bottom="15.0" left="15.0"/></padding>
+    <top>
+        <HBox alignment="CENTER_LEFT" spacing="12.0">
+            <Button text="Back" onAction="#handleBack"/>
+            <Label text="Exam Statistics" style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+            <Button text="Refresh" onAction="#handleRefresh"/>
+        </HBox>
+    </top>
+    <center>
+        <VBox spacing="10.0">
+            <padding><Insets top="15.0"/></padding>
+            <Label text="Completed Instances of My Authored Exams" style="-fx-font-weight: bold;"/>
+            <TableView fx:id="statisticsTable" prefHeight="230.0">
+                <columns>
+                    <TableColumn fx:id="instanceIdColumn" prefWidth="90.0" text="Instance"/>
+                    <TableColumn fx:id="examIdColumn" prefWidth="100.0" text="Exam ID"/>
+                    <TableColumn fx:id="courseColumn" prefWidth="260.0" text="Course"/>
+                    <TableColumn fx:id="administeringTeacherColumn" prefWidth="220.0" text="Administering Teacher"/>
+                    <TableColumn fx:id="openingTimeColumn" prefWidth="180.0" text="Opening Time"/>
+                </columns>
+            </TableView>
+            <Separator/>
+            <Label fx:id="selectedInstanceLabel" text="Select an exam instance"
+                   style="-fx-font-weight: bold;"/>
+            <HBox spacing="25.0" VBox.vgrow="ALWAYS">
+                <GridPane hgap="15.0" prefWidth="270.0" vgap="13.0">
+                    <Label text="Started:" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                    <Label fx:id="startedValueLabel" text="-" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+                    <Label text="Submitted:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+                    <Label fx:id="submittedValueLabel" text="-" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                    <Label text="Timed Out:" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+                    <Label fx:id="timedOutValueLabel" text="-" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+                    <Label text="Approved Grades:" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+                    <Label fx:id="approvedGradesValueLabel" text="-" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+                    <Label text="Average:" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
+                    <Label fx:id="averageValueLabel" text="-" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+                    <Label text="Median:" GridPane.columnIndex="0" GridPane.rowIndex="5"/>
+                    <Label fx:id="medianValueLabel" text="-" GridPane.columnIndex="1" GridPane.rowIndex="5"/>
+                </GridPane>
+                <BarChart fx:id="distributionChart" animated="false" legendVisible="false"
+                          title="Final Grade Distribution" HBox.hgrow="ALWAYS">
+                    <xAxis><CategoryAxis label="Grade Range"/></xAxis>
+                    <yAxis><NumberAxis forceZeroInRange="true" label="Students" tickUnit="1.0"/></yAxis>
+                </BarChart>
+            </HBox>
+            <Label fx:id="statusLabel" wrapText="true"/>
+        </VBox>
+    </center>
+</BorderPane>

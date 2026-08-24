@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane prefHeight="650.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="il.cshaifasweng.hsts.client.screens.ExamCreationScreen">
+   <padding>
+      <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+   </padding>
+   <center>
+      <HBox spacing="20.0" BorderPane.alignment="CENTER">
+         <children>
+            <VBox spacing="8.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <Label text="Available Questions" />
+                  <TableView fx:id="availableQuestionsTable" VBox.vgrow="ALWAYS">
+                    <columns>
+                      <TableColumn fx:id="availableQuestionIdColumn" prefWidth="110.0" text="Question ID" />
+                      <TableColumn fx:id="availableDescriptionColumn" prefWidth="280.0" text="Description" />
+                    </columns>
+                  </TableView>
+                  <HBox spacing="8.0">
+                     <children>
+                        <TextField fx:id="pointsField" prefWidth="100.0" promptText="Points" />
+                        <Button mnemonicParsing="false" onAction="#handleAddQuestion" text="Add Question" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <VBox spacing="8.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <Label text="Selected Questions" />
+                  <TableView fx:id="selectedQuestionsTable" VBox.vgrow="ALWAYS">
+                    <columns>
+                      <TableColumn fx:id="selectedQuestionIdColumn" prefWidth="190.0" text="Question ID" />
+                      <TableColumn fx:id="selectedPointsColumn" prefWidth="190.0" text="Points" />
+                    </columns>
+                  </TableView>
+                  <Button mnemonicParsing="false" onAction="#handleRemoveQuestion" text="Remove Question" />
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+   </center>
+   <bottom>
+      <VBox spacing="10.0" BorderPane.alignment="CENTER">
+         <children>
+            <GridPane hgap="12.0" vgap="8.0">
+              <columnConstraints>
+                <ColumnConstraints minWidth="150.0" prefWidth="170.0" />
+                <ColumnConstraints hgrow="ALWAYS" minWidth="300.0" />
+              </columnConstraints>
+               <children>
+                  <TextField fx:id="examIdField" promptText="Six-digit exam ID" GridPane.columnIndex="1" />
+                  <TextField fx:id="durationField" promptText="Duration" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <TextArea fx:id="studentInstructionsArea" prefRowCount="2" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <TextArea fx:id="teacherInstructionsArea" prefRowCount="2" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <Label fx:id="totalPointsLabel" text="0 / 100" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <Label text="Exam ID:" />
+                  <Label text="Duration (minutes):" GridPane.rowIndex="1" />
+                  <Label text="Student Instructions:" GridPane.rowIndex="2" />
+                  <Label text="Teacher Instructions:" GridPane.rowIndex="3" />
+                  <Label text="Total Points" GridPane.rowIndex="4" />
+               </children>
+            </GridPane>
+            <HBox alignment="CENTER_LEFT" spacing="12.0">
+               <children>
+                  <Button fx:id="createExamButton" mnemonicParsing="false" onAction="#handleCreateExam" text="Create Exam" />
+                  <Label fx:id="statusLabel" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </bottom>
+   <top>
+      <VBox spacing="12.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox alignment="CENTER_LEFT" spacing="15.0">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#handleBack" text="Back" />
+                  <Label text="Create Exam" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" spacing="10.0">
+               <children>
+                  <Label text="Course:" />
+                  <ComboBox fx:id="courseComboBox" prefWidth="250.0" />
+                  <Button mnemonicParsing="false" onAction="#handleLoadQuestions" text="Load Questions" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </top>
+</BorderPane>
